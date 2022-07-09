@@ -9,7 +9,7 @@ export function addLoggerHook (hook: LogHook) {
 }
 
 export const logger = {
-  log(...args: any[]) { applyHooks(fmt(...args)); return console.log(...args) },
-  warn(...args: any[]) { applyHooks(fmt(...args)); return console.warn(...args) },
-  error(...args: any[]) { applyHooks(fmt(...args)); return console.error(...args) },
+  log (...args: any[]) { applyHooks(fmt(...args)); return console.log(...args) },
+  warn (...args: any[]) { applyHooks(fmt(...args)); return console.warn(...args) },
+  error (...args: any[]) { applyHooks(fmt(...args)); return console.error(...args) },
 }

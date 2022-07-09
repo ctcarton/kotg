@@ -10,7 +10,7 @@ export class MainApp extends ViewComponent<typeof MainApp> {
   constructor() {
     super()
     addLoggerHook(msg => this.logs.push(msg))
-    logger.log(`[${format(new Date(), 'yyyy-MM-dd HH:mm:ss')}] Started`)
+    logger.log(`[${format(new Date(), 'yyyy-MM-dd HH:mm:ss')}] [MainApp] Started`)
   }
 
   @computed()
