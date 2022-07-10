@@ -1,17 +1,29 @@
-import { Game as PlayerInterface } from '@/kotg/player/types'
+import { Game, PlayerInterface } from './types'
 
 export class Player {
-  id: number
-  name: string
-  log: string[]
-  botScript: (game: PlayerInterface) => void
 
+  constructor (
+    public id: number,
+    public name: string,
+    private game: Game,
+    private botScript: (game: PlayerInterface.Game) => void  
+  ) { }
+
+  log: string[]
   controlledSystems = new Set<number>()
   disable = false
 
-  constructor (id: number) {
-    Object.defineProperty(this, 'id', {
-      get () { return id }
-    })
+  getPlayerPlayer (): PlayerInterface.Player {
+    const self = this
+    return {
+      get id () { return self.id },
+      get controlledSystems () {
+        return Object.freeze(
+          [...self.controlledSystems.values()]
+            .map(id => self.game.map)
+        )
+      },
+    }
   }
+
 }

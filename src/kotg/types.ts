@@ -1,6 +1,17 @@
-import type { System } from './system'
-
 export * as PlayerInterface from '@/kotg/player/types'
+
+export interface System {
+  id: number
+}
+
+export interface Map {
+  systems: readonly System[]
+}
+
+export interface Game {
+  map: Map
+  players: readonly number[]
+}
 
 export enum ActionType {
   BUILD_FIGHTER,
@@ -11,21 +22,21 @@ export enum ActionType {
 }
 
 export type BuildAction = {
-  type: ActionType.BUILD_FIGHTER,
-  system: System
+  type: ActionType.BUILD_FIGHTER
+  system: number
   count: number
 }
 
 export type ScrapAction = {
-  type: ActionType.SCRAP_FIGHTER,
-  system: System
+  type: ActionType.SCRAP_FIGHTER
+  system: number
   count: number
 }
 
 export type TravelAction = {
-  type: ActionType.TRAVEL,
-  source: System,
-  destination: System,
+  type: ActionType.TRAVEL
+  source: number
+  destination: number
   count: number
 }
 

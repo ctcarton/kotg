@@ -1,14 +1,15 @@
 import { randomRange, randomInt } from '@/utils/random'
 import { System } from './system'
+import { Map } from './types'
 
-export class Map {
+export class MapImpl implements Map {
   systems: readonly System[]
 
   constructor (systems: System[]) {
     this.systems = Object.freeze(systems)
   }
 
-  static generate (botCount: number): Map {
+  static generate (botCount: number): MapImpl {
     const systemCount = randomRange([3, 5]) * botCount
     const MX = 1280 // FIXME need to calculate map size. Maybe use simple hill climbing to optimize density.
     const MY = 960
@@ -28,6 +29,6 @@ export class Map {
         minerals: randomRange(mineralR)
     }))
 
-    return new Map(systems)
+    return new MapImpl(systems)
   }
 }

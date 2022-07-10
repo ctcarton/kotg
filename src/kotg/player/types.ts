@@ -11,7 +11,7 @@ export interface Position {
 
 export interface Player {
   id: number
-  controlledSystems: System[]
+  controlledSystems: readonly System[]
 }
 
 export interface System {
