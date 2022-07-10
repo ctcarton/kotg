@@ -2,14 +2,12 @@ import { randomInt } from '@/utils/random'
 import { Map } from './map'
 import { Player } from './player'
 import { System } from './system'
-import { Game as PlayerInterface } from './types'
+import { PlayerInterface, Action } from './types'
 
 type GameParams = {
   numberOfPlayers: number
   turnLimit: number
 }
-
-type Action = any
 
 export class Game {
   params: GameParams
@@ -33,16 +31,34 @@ export class Game {
     }
   }
 
-  private getPlayerInterface (player: Player, actionQueue: Action[]): PlayerInterface {
-    return {}
+  private getPlayerInterfaceGame (player: Player): {
+    playerGame: PlayerInterface.Game,
+    actions: Action[],
+   } {
+    const players: readonly PlayerInterface.Player[] = Object.freeze([])
+    const systems: readonly PlayerInterface.System[] = Object.freeze([])
+    const playerGame: PlayerInterface.Game = {
+      get players () { return players },
+      get systems () { return systems },
+      buildFighters () { throw 'not implemented '},
+      scrapFighters () { throw 'not implemented '},
+      travel () { throw 'not implemented '},
+      postOrder () { throw 'not implemented '},
+      fillOrder () { throw 'not implemented '},   
+    }
+    return {
+      playerGame,
+      actions: [],
+    }
   }
 
   private getPlayerActions (): Action[] {
     const actionQueue = []
     for (const player of this.players.filter(p => !p.disable)) {
-      const playerInterface = this.getPlayerInterface(player, actionQueue)
+      const { playerGame, actions } = this.getPlayerInterfaceGame(player)
+      actions.forEach(a => actionQueue.push(a))
       try {
-        player.botScript(playerInterface)
+        player.botScript(playerGame)
       } catch (err) {
         console.error(`[${player.name}]`, err)
         player.disable = true

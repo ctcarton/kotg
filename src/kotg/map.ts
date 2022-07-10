@@ -31,4 +31,3 @@ export class Map {
     return new Map(systems)
   }
 }
-
