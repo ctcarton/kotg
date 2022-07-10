@@ -65,12 +65,12 @@ export class Game {
   }
 
   private generatePlayers (params: GameParams) {
-    this.players = Object.freeze(Array(params.numberOfPlayers).map((_, i) => new Player(i)))
-    const occupied = new Set<number>()
+    this.players = Object.freeze([...Array(params.numberOfPlayers)].map((_, i) => new Player(i)))
+    const occupiedSystems = new Set<number>()
     for (const p of this.players) {
       let systemId = randomInt(this.systems.length)
-      while (occupied.has(systemId)) { systemId = randomInt(this.systems.length) }
-      occupied.add(systemId)
+      while (occupiedSystems.has(systemId)) { systemId = randomInt(this.systems.length) }
+      occupiedSystems.add(systemId)
       this.setSystemController(this.systems[systemId], p)
     }
   }

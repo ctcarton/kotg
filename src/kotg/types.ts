@@ -9,4 +9,6 @@ export interface Position {
   y: number
 }
 
-export interface Game {}
+export interface Game {
+  
+}

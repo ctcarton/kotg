@@ -16,7 +16,7 @@ export class Map {
     const goldR = [10, 50] as const
     const mineralR = [10, 50] as const
 
-    const systems = Array(systemCount)
+    const systems = [...Array(systemCount)]
       .map((_, i) => new System({
         id: i,
         pos: {
