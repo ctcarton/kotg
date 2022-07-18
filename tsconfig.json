@@ -20,7 +20,8 @@
     "baseUrl": "./src",
     "experimentalDecorators": true,
     "paths": {
-      "@/*": ["*"]
+      "lodash": [ "../node_modules/lodash" ],
+      "@/*": ["*"],
     }
   },
   "include": ["./src"]
