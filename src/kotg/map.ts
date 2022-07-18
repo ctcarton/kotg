@@ -1,15 +1,21 @@
+import { fromPairs } from 'lodash'
+import { memoize } from '@/utils/decorators'
 import { randomRange, randomInt } from '@/utils/random'
 import { System } from './system'
-import { Map } from './types'
 
-export class MapImpl implements Map {
+export class Map {
   systems: readonly System[]
+
+  @memoize()
+  get systemById () {
+    return fromPairs(this.systems.map((v,i) => [i,v]))
+  }
 
   constructor (systems: System[]) {
     this.systems = Object.freeze(systems)
   }
 
-  static generate (botCount: number): MapImpl {
+  static generate (botCount: number): Map {
     const systemCount = randomRange([3, 5]) * botCount
     const MX = 1280 // FIXME need to calculate map size. Maybe use simple hill climbing to optimize density.
     const MY = 960
@@ -29,6 +35,6 @@ export class MapImpl implements Map {
         minerals: randomRange(mineralR)
     }))
 
-    return new MapImpl(systems)
+    return new Map(systems)
   }
 }

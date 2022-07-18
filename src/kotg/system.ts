@@ -1,4 +1,4 @@
-import { Position } from '@/kotg/types';
+import { Position, PlayerInterface } from '@/kotg/types';
 
 type SystemParams = {
   id: number
@@ -14,6 +14,10 @@ export class System {
   
   constructor (params: SystemParams) {
     this.#params = params
+  }
+
+  get playerSystem (): PlayerInterface.System {
+    return null // FIXME
   }
 
   get id () { return this.#params.id }

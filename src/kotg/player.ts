@@ -1,4 +1,5 @@
-import { Game, PlayerInterface } from './types'
+import { PlayerInterface } from './types'
+import type { Game } from './game'
 
 export class Player {
 
@@ -20,7 +21,7 @@ export class Player {
       get controlledSystems () {
         return Object.freeze(
           [...self.controlledSystems.values()]
-            .map(id => self.game.map)
+            .map(id => self.game.map.systemById(id))
         )
       },
     }

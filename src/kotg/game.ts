@@ -2,14 +2,14 @@ import { randomInt } from '@/utils/random'
 import { Map } from './map'
 import { Player } from './player'
 import { System } from './system'
-import { PlayerInterface, Action, Game } from './types'
+import { PlayerInterface, Action } from './types'
 
 type GameParams = {
   numberOfPlayers: number
   turnLimit: number
 }
 
-export class GameImpl implements Game {
+export class Game {
   params: GameParams
   map: Map
   players: readonly Player[]

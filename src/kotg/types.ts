@@ -1,16 +1,8 @@
 export * as PlayerInterface from '@/kotg/player/types'
 
-export interface System {
-  id: number
-}
-
-export interface Map {
-  systems: readonly System[]
-}
-
-export interface Game {
-  map: Map
-  players: readonly number[]
+export type Position = {
+  x: number
+  y: number
 }
 
 export enum ActionType {
