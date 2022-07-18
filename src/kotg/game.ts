@@ -58,7 +58,7 @@ export class Game {
       const { playerGame, actions } = this.getPlayerInterfaceGame(player)
       actions.forEach(a => actionQueue.push(a))
       try {
-        player.botScript(playerGame)
+        player.runScript(playerGame)
       } catch (err) {
         console.error(`[${player.name}]`, err)
         player.disable = true

@@ -14,6 +14,8 @@ export class Player {
   controlledSystems = new Set<number>()
   disable = false
 
+  runScript (game: PlayerInterface.Game) { return this.botScript(game) }
+
   getPlayerPlayer (): PlayerInterface.Player {
     const self = this
     return {
@@ -21,7 +23,7 @@ export class Player {
       get controlledSystems () {
         return Object.freeze(
           [...self.controlledSystems.values()]
-            .map(id => self.game.map.systemById(id))
+            .map(id => self.game.map.systemById[id].playerSystem)
         )
       },
     }

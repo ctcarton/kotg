@@ -17,11 +17,11 @@
     "jsx": "preserve",
     "jsxFactory": "tko.jsx.createElement",
     "jsxFragmentFactory": "tko.jsx.Fragment",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "experimentalDecorators": true,
     "paths": {
-      "lodash": [ "../node_modules/lodash" ],
-      "@/*": ["*"],
+      "*": [ "node_modules/*" ],
+      "@/*": ["src/*"],
     }
   },
   "include": ["./src"]

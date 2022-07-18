@@ -16,6 +16,7 @@
   "dependencies": {
     "@tko/build.reference": "4.0.0-alpha9.0",
     "@types/knockout": "^3.4.71",
+    "@types/lodash": "^4.14.182",
     "date-fns": "^2.28.0",
     "jss": "^10.9.0",
     "jss-preset-default": "^10.9.0",
